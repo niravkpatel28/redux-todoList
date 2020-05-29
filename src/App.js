@@ -3,9 +3,10 @@ import "./App.css";
 import { connect } from "react-redux";
 import store from "./redux/store";
 import generateTask from "./helpers/generateTask";
-// import { ADD_TASK } from "./redux/actions/action";
 import updateTaskAction from "./redux/actions/updateTask.action";
 import addTaskAction from "./redux/actions/addTask.action";
+import Tasklist from "./components/taskList";
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -26,10 +27,11 @@ class App extends React.Component {
       this.addTask();
     }
   };
+
   render() {
-    // console.log(this.props.task);
     return (
       <div>
+        <h1> Add Task List </h1>
         <input
           type="text"
           onChange={this.onChangeHandler}
@@ -37,9 +39,10 @@ class App extends React.Component {
           onKeyPress={this.pressEnter}
         />
         <button onClick={this.addTask}>Add</button>
-        {this.props.taskList.map((task) => (
+        <Tasklist onClick={this.deleteItem} />
+        {/* {this.props.taskList.map((task) => (
           <p key={task.id}> {task.task} </p>
-        ))}
+        ))} */}
       </div>
     );
   }
